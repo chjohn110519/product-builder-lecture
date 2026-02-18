@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="행운의 로또 번호를 생성해보세요. 프리미엄 로또 번호 생성기.">
+    <title>🎱 Lotto Generator — 행운의 번호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Floating particles background -->
+    <div class="particles" id="particles"></div>
+
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎱</span>
+                <h1>Lotto Generator</h1>
+            </div>
+            <p class="tagline">오늘의 행운을 잡아보세요</p>
+        </header>
+
+        <!-- Lottery Ball Display -->
+        <section class="ball-stage" id="ballStage">
+            <div class="ball-container" id="ballContainer">
+                <div class="placeholder-text" id="placeholderText">
+                    <span class="placeholder-icon">✨</span>
+                    <span>번호를 생성해보세요</span>
+                </div>
+            </div>
+            <div class="bonus-section" id="bonusSection" style="display: none;">
+                <span class="bonus-label">보너스</span>
+                <div class="bonus-ball" id="bonusBall"></div>
+            </div>
+        </section>
+
+        <!-- Generate Button -->
+        <div class="action-area">
+            <button class="generate-btn" id="generateBtn" onclick="generateLotto()">
+                <span class="btn-icon">🎰</span>
+                <span class="btn-text">번호 생성</span>
+                <span class="btn-shine"></span>
+            </button>
+            <div class="options">
+                <label class="option-label">
+                    <input type="number" id="setCount" min="1" max="10" value="1" class="set-input">
+                    <span>세트</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- History Section -->
+        <section class="history-section" id="historySection" style="display: none;">
+            <div class="history-header">
+                <h2>📋 생성 기록</h2>
+                <button class="clear-btn" onclick="clearHistory()">전체 삭제</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-section" id="statsSection" style="display: none;">
+            <h2>📊 번호 빈도 통계</h2>
+            <div class="stats-grid" id="statsGrid"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Made with ✨ by Ji-an · 이 번호는 무작위로 생성됩니다</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
