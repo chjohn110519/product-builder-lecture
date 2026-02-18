@@ -269,8 +269,40 @@ function clearHistory() {
     renderStats();
 }
 
+// ===== Theme Toggle =====
+function toggleTheme() {
+    const html = document.documentElement;
+    const icon = document.getElementById('themeIcon');
+    const isDark = html.getAttribute('data-theme') !== 'light';
+
+    if (isDark) {
+        html.setAttribute('data-theme', 'light');
+        icon.textContent = '🌙';
+        localStorage.setItem('lottoTheme', 'light');
+    } else {
+        html.removeAttribute('data-theme');
+        icon.textContent = '☀️';
+        localStorage.setItem('lottoTheme', 'dark');
+    }
+}
+
+function initTheme() {
+    const saved = localStorage.getItem('lottoTheme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const icon = document.getElementById('themeIcon');
+
+    if (saved === 'light' || (!saved && !prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        icon.textContent = '🌙';
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        icon.textContent = '☀️';
+    }
+}
+
 // ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     createParticles();
     renderHistory();
     renderStats();

@@ -12,6 +12,11 @@
     --accent-2: #764ba2;
     --gold: #f6d365;
     --gold-gradient: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --border-color-subtle: rgba(255, 255, 255, 0.04);
+    --border-color-input: rgba(255, 255, 255, 0.1);
+    --separator-color: rgba(255, 255, 255, 0.08);
+    --separator-dashed: rgba(255, 255, 255, 0.1);
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
@@ -21,6 +26,23 @@
     --font-display: 'Outfit', sans-serif;
     --font-body: 'Noto Sans KR', sans-serif;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== Light Mode ===== */
+[data-theme="light"] {
+    --bg-primary: #f0f2f8;
+    --bg-secondary: #e4e7f0;
+    --bg-card: rgba(255, 255, 255, 0.75);
+    --bg-card-hover: rgba(255, 255, 255, 0.9);
+    --text-primary: #1a1a2e;
+    --text-secondary: #555577;
+    --text-muted: #8888aa;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-color-subtle: rgba(0, 0, 0, 0.05);
+    --border-color-input: rgba(0, 0, 0, 0.12);
+    --separator-color: rgba(0, 0, 0, 0.08);
+    --separator-dashed: rgba(0, 0, 0, 0.12);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 /* ===== Reset & Base ===== */
@@ -39,6 +61,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+    transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* ===== Particles Background ===== */
@@ -96,6 +119,47 @@ body {
 .header {
     text-align: center;
     margin-bottom: 48px;
+    position: relative;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-icon {
+    font-size: 1.3rem;
+    transition: transform 0.4s ease;
+    display: block;
+    line-height: 1;
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(30deg);
 }
 
 .logo {
@@ -145,7 +209,7 @@ body {
 /* ===== Ball Stage ===== */
 .ball-stage {
     background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-color);
     backdrop-filter: blur(20px);
     border-radius: var(--radius-lg);
     padding: 48px 32px 32px;
@@ -297,7 +361,7 @@ body {
     gap: 12px;
     margin-top: 20px;
     padding-top: 20px;
-    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    border-top: 1px dashed var(--separator-dashed);
 }
 
 .bonus-label {
@@ -359,7 +423,7 @@ body {
     content: '';
     flex: 1;
     height: 1px;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--separator-color);
 }
 
 .set-label {
@@ -457,7 +521,7 @@ body {
     font-weight: 600;
     color: var(--text-primary);
     background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color-input);
     border-radius: var(--radius-sm);
     text-align: center;
     outline: none;
@@ -491,7 +555,7 @@ body {
     font-size: 0.8rem;
     color: var(--text-muted);
     background: none;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-color);
     padding: 6px 14px;
     border-radius: var(--radius-full);
     cursor: pointer;
@@ -516,7 +580,7 @@ body {
     gap: 12px;
     padding: 14px 18px;
     background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color-subtle);
     border-radius: var(--radius-md);
     transition: background var(--transition);
     animation: fadeIn 0.4s ease;
@@ -619,7 +683,7 @@ body {
     gap: 4px;
     padding: 8px 4px;
     background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color-subtle);
     border-radius: var(--radius-sm);
     transition: all var(--transition);
 }
