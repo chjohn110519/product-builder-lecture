@@ -306,4 +306,40 @@ document.addEventListener('DOMContentLoaded', () => {
     createParticles();
     renderHistory();
     renderStats();
+    initContactForm();
 });
+
+// ===== Contact Form Handler =====
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span>전송 중...</span>';
+
+        try {
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (res.ok) {
+                form.style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'flex';
+            } else {
+                alert('전송에 실패했습니다. 다시 시도해주세요.');
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        } catch (err) {
+            alert('네트워크 오류가 발생했습니다.');
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        }
+    });
+}
